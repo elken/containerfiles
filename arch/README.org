@@ -1,0 +1,8 @@
+#+title: Arch
+#+author: Ellis Kenyő
+#+date: \today
+#+latex_class: chameleon
+
+Simple Arch image with a few dependencies I rely on and a built version of my favourite AUR helper; [[https://github.com/fosskers/aura][aura]].
+
+Also includes a few custom config files.

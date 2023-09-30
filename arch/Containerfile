@@ -1,0 +1,17 @@
+FROM archlinux:base-devel
+MAINTAINER Ellis Kenyő <me@elken.dev>
+
+RUN pacman -Sy --noconfirm sudo git keychain direnv exa bat lsb-release gnupg && \
+    useradd -m build && \
+    mkdir -p /etc/sudoers.d && \
+    echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/build
+
+USER build
+WORKDIR /home/build
+
+RUN git clone https://aur.archlinux.org/aura-bin.git && \
+    cd aura-bin && \
+    makepkg -sfi --noconfirm
+
+# Do this after makepkg so we don't need the key
+COPY etc /etc

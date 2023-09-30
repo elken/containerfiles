@@ -29,6 +29,8 @@ jobs:
         id: build_image
         with:
           context: arch
+          containerfiles: |
+            ./arch/Containerfile
           image: ${{ env.IMAGE_NAME }}
           tags: ${{ env.IMAGE_TAGS }}
           oci: true

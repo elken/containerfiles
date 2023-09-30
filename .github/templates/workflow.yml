@@ -31,7 +31,7 @@ jobs:
           context: {{name}}
           containerfiles: |
             ./{{name}}/Containerfile
-          image: ${{ env.IMAGE_NAME }}
+          image: containerfiles-${{ env.IMAGE_NAME }}
           tags: ${{ env.IMAGE_TAGS }}
           oci: true
 

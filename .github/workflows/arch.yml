@@ -27,7 +27,7 @@ jobs:
         uses: redhat-actions/buildah-build@v2
         id: build_image
         with:
-          containerfiles: arch/Containerfile
+          context: arch
           image: ${{ env.IMAGE_NAME }}
           tags: ${{ env.IMAGE_TAGS }}
           oci: true

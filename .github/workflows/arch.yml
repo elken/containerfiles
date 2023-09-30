@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - arch
+      - arch/**
 
 env:
   IMAGE_NAME: arch

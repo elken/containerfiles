@@ -1,0 +1,34 @@
+{:min-bb-version "0.4.0"
+ :deps {io.github.lispyclouds/bblgum {:git/sha "1d4de3d49b84f64d1b71930fa1161f8d2622a4d9"}}
+ :tasks
+ {new
+  {:doc "Create a new container structure"
+   :requires ([bblgum.core :as b]
+              [clojure.string :as str]
+              [babashka.fs :as fs]
+              [babashka.process :as sh])
+   :task
+   (let [name (-> (b/gum :input :placeholder "Name of the container?")
+                  :result
+                  first)
+         template (-> (slurp ".github/templates/workflow.yml")
+                      (str/replace "{{name}}" name))
+         workflow-name (format ".github/workflows/%s.yml" name)]
+     (when-not (fs/exists? workflow-name)
+       (spit workflow-name template))
+     (when-not (fs/exists? name)
+       (fs/create-dir name)
+       (spit
+        (format "%s/README.org" name)
+        (format
+         "#+title: %s
+#+author: Ellis Kenyő
+#+date: \\today
+#+latex_class: chameleon
+
+Simple %s image with a few dependencies I rely on." name name))
+       (spit
+        (format "%s/Containerfile" name)
+        (format
+         "FROM registry.fedoraproject.org/fedora-toolbox:%s\nMAINTAINER Ellis Kenyő <me@elken.dev>\n"
+         (:out (sh/shell {:out :string} "rpm -E %fedora"))))))}}}

@@ -1,0 +1,6 @@
+#+title: apps
+#+author: Ellis Kenyő
+#+date: \today
+#+latex_class: chameleon
+
+Simple apps image with a few dependencies I rely on.

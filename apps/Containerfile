@@ -1,0 +1,5 @@
+FROM ghcr.io/elken/containerfiles-arch
+MAINTAINER Ellis Kenyő <me@elken.dev>
+
+RUN sudo pacman -Sy --noconfirm gnome-disk-utility kdeconnect swappy wf-recorder && \
+    sudo aura -A --noconfirm swaync wlr-randr

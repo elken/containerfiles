@@ -1,0 +1,46 @@
+FROM registry.fedoraproject.org/fedora-toolbox:39
+MAINTAINER Ellis Kenyő <me@elken.dev>
+
+# Needed packages
+RUN dnf -y distro-sync && \
+    dnf -y install \
+    keychain \
+    direnv \
+    sqlite3 \
+    fd-find \
+    ripgrep \
+    cmake \
+    libtool \
+    java-11-openjdk \
+    exa \
+    bat \
+    cargo \
+    cmake \
+    direnv \
+    enchant2-devel \
+    pkgconf \
+    rlwrap \
+    gh \
+    jq \
+    autoconf \
+    automake \
+    gcc \
+    python \
+    shellcheck \
+    shfmt \
+    nodejs \
+    yarnpkg \
+    unzip \
+    p7zip \
+    --exclude=nodejs-docs,nodejs-full-il8n,btrfs-progs,systemd-networkd && \
+    dnf clean all
+
+# Setup global aliases for host-spawn
+RUN  ln -s /usr/bin/distrobox-host-exec /usr/local/bin/distrobox && \
+     ln -s /usr/bin/distrobox-host-exec /usr/local/bin/flatpak && \
+     ln -s /usr/bin/distrobox-host-exec /usr/local/bin/podman && \
+     ln -s /usr/bin/distrobox-host-exec /usr/local/bin/pw-mon && \
+     ln -s /usr/bin/distrobox-host-exec /usr/local/bin/swaymsg && \
+     ln -s /usr/bin/distrobox-host-exec /usr/local/bin/sway && \
+     ln -s /usr/bin/distrobox-host-exec /usr/local/bin/swaync-client && \
+     ln -s /usr/bin/distrobox-host-exec /usr/local/bin/xdg-open

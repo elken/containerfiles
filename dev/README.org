@@ -1,0 +1,6 @@
+#+title: dev
+#+author: Ellis Kenyő
+#+date: \today
+#+latex_class: chameleon
+
+Main dev image I use when the distribution doesn't matter but I need something quickly setup.

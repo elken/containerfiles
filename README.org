@@ -1,0 +1,12 @@
+#+title: Containerfiles
+#+author: Ellis Kenyő
+#+date: \today
+#+latex_class: chameleon
+
+As the title alludes to; this is a collection of Containerfiles for various
+[[https://github.com/89luca89/distrobox][distrobox]] containers. Since I
+typically use 1/2 main containers and spin up ones as I need them for various
+reasons, I wanted to save me time having to input the same commands over and
+over.
+
+Inspired by [[https://github.com/travier/quay-containerfiles][travier's containerfiles]] repo, insofar as borrowing the structure.

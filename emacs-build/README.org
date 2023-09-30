@@ -1,0 +1,6 @@
+#+title: emacs-build
+#+author: Ellis Kenyő
+#+date: \today
+#+latex_class: chameleon
+
+Simple emacs-build image with a few dependencies I rely on.

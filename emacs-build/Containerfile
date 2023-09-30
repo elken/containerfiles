@@ -1,0 +1,6 @@
+FROM ghcr.io/elken/containerfiles-dev:latest
+MAINTAINER Ellis Kenyő <me@elken.dev>
+
+# Until upstream gets pgtk
+RUN dnf copr enable -y alternateved/bleeding-emacs && \
+    dnf install -y bleeding-emacs

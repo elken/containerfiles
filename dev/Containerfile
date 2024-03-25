@@ -1,9 +1,11 @@
-FROM registry.fedoraproject.org/fedora-toolbox:39
+FROM registry.fedoraproject.org/fedora-toolbox:40
 MAINTAINER Ellis Kenyő <me@elken.dev>
 
 # Needed packages
 RUN dnf -y distro-sync && \
     dnf -y install \
+    helix \
+    zsh \
     keychain \
     direnv \
     sqlite3 \
@@ -12,7 +14,7 @@ RUN dnf -y distro-sync && \
     cmake \
     libtool \
     java-11-openjdk \
-    exa \
+    eza \
     bat \
     cargo \
     cmake \

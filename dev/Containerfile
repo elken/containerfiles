@@ -46,3 +46,17 @@ RUN  ln -s /usr/bin/distrobox-host-exec /usr/local/bin/distrobox && \
      ln -s /usr/bin/distrobox-host-exec /usr/local/bin/sway && \
      ln -s /usr/bin/distrobox-host-exec /usr/local/bin/swaync-client && \
      ln -s /usr/bin/distrobox-host-exec /usr/local/bin/xdg-open
+
+# Setup Clojure
+RUN curl -L -O https://github.com/clojure/brew-install/releases/latest/download/linux-install.sh && \
+    chmod +x linux-install.sh && \
+    sudo ./linux-install.sh && \
+    rm linux-install.sh
+
+# Copy files useful for scripts
+COPY --from=ghcr.io/babashka/babashka:latest /usr/local/bin/bb /usr/bin/bb
+COPY --from=ghcr.io/charmbracelet/gum:latest /usr/local/bin/gum /usr/bin/gum
+
+# Install important typst packages
+RUN cargo install --git https://github.com/nvarner/typst-lsp.git typst-lsp && \
+    cargo install --git https://github.com/astrale-sharp/typstfmt.git

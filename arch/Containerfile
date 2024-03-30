@@ -1,5 +1,4 @@
 FROM archlinux:base-devel
-MAINTAINER Ellis Kenyő <me@elken.dev>
 
 RUN pacman -Sy --noconfirm sudo git keychain direnv exa bat lsb-release cargo && \
     cargo install aura-pm --version 4.0.0-alpha9 && \

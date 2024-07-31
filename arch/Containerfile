@@ -1,7 +1,7 @@
 FROM archlinux:base-devel
 
-RUN pacman -Sy --noconfirm sudo git keychain direnv exa bat lsb-release cargo && \
-    cargo install aura-pm --version 4.0.0-alpha9 && \
+RUN pacman -Sy --noconfirm sudo git keychain direnv eza bat lsb-release cargo && \
+    cargo install aura-pm && \
     ln -s ~/.cargo/bin/aura /usr/local/bin/aura
 
 # Do this after makepkg so we don't need the key

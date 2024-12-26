@@ -1,5 +1,4 @@
-FROM registry.fedoraproject.org/fedora-toolbox:39
-MAINTAINER Ellis Kenyő <me@elken.dev>
+FROM registry.fedoraproject.org/fedora-toolbox:41
 
 # Needed packages
 RUN dnf -y distro-sync && \
@@ -34,23 +33,24 @@ RUN dnf -y distro-sync && \
     yarnpkg \
     unzip \
     p7zip \
+    git \
     --exclude=nodejs-docs,nodejs-full-il8n,btrfs-progs,systemd-networkd && \
     dnf clean all
 
 # Setup global aliases for host-spawn
 RUN  ln -s /usr/bin/distrobox-host-exec /usr/local/bin/distrobox && \
-     ln -s /usr/bin/distrobox-host-exec /usr/local/bin/flatpak && \
-     ln -s /usr/bin/distrobox-host-exec /usr/local/bin/podman && \
-     ln -s /usr/bin/distrobox-host-exec /usr/local/bin/pw-mon && \
-     ln -s /usr/bin/distrobox-host-exec /usr/local/bin/swaymsg && \
-     ln -s /usr/bin/distrobox-host-exec /usr/local/bin/sway && \
-     ln -s /usr/bin/distrobox-host-exec /usr/local/bin/swaync-client && \
-     ln -s /usr/bin/distrobox-host-exec /usr/local/bin/xdg-open
+    ln -s /usr/bin/distrobox-host-exec /usr/local/bin/flatpak && \
+    ln -s /usr/bin/distrobox-host-exec /usr/local/bin/podman && \
+    ln -s /usr/bin/distrobox-host-exec /usr/local/bin/pw-mon && \
+    ln -s /usr/bin/distrobox-host-exec /usr/local/bin/swaymsg && \
+    ln -s /usr/bin/distrobox-host-exec /usr/local/bin/sway && \
+    ln -s /usr/bin/distrobox-host-exec /usr/local/bin/swaync-client && \
+    ln -s /usr/bin/distrobox-host-exec /usr/local/bin/xdg-open
 
 # Setup Clojure
 RUN curl -L -O https://github.com/clojure/brew-install/releases/latest/download/linux-install.sh && \
     chmod +x linux-install.sh && \
-    sudo ./linux-install.sh && \
+    ./linux-install.sh && \
     rm linux-install.sh
 
 # Copy files useful for scripts

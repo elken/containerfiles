@@ -1,6 +1,34 @@
-FROM ghcr.io/elken/containerfiles-dev:latest
-MAINTAINER Ellis Kenyő <me@elken.dev>
+FROM ghcr.io/elken/containerfiles-dev
 
-# Until upstream gets pgtk
-RUN dnf copr enable -y alternateved/bleeding-emacs && \
-    dnf install -y bleeding-emacs
+RUN dnf5 update -y && \
+    dnf5 builddep -y emacs && \
+    dnf5 clean all
+
+RUN git clone --depth 1 https://git.savannah.gnu.org/git/emacs.git
+
+WORKDIR /emacs
+
+RUN ./autogen.sh && \
+    ./configure \
+    --with-native-compilation \
+    --with-dbus \
+    --with-pdumper \
+    --with-file-notification \
+    --with-gconf \
+    --with-harfbuzz \
+    --with-systemd \
+    --with-modules \
+    --with-native-image-api \
+    --with-pgtk \
+    --with-tree-sitter \
+    --with-x-toolkit=lucid \
+    --with-jpeg \
+    --with-png \
+    --with-rsvg \
+    --with-tiff \
+    --with-gif \
+    --with-xml2 \
+    CFLAGS="-O2 -pipe" \
+    && make -j$(nproc) \
+    && make install
+

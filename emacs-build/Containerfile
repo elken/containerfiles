@@ -4,7 +4,7 @@ RUN dnf5 update -y && \
     dnf5 builddep -y emacs && \
     dnf5 clean all
 
-RUN git clone --depth 1 https://git.savannah.gnu.org/git/emacs.git
+RUN git clone --depth 1 https://git.savannah.gnu.org/git/emacs.git -b scratch/igc
 
 WORKDIR /emacs
 
